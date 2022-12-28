@@ -1,0 +1,51 @@
+" Reset all styles first
+highlight clear
+
+highlight Border	cterm=none	ctermfg=-1	ctermbg=-1
+
+highlight TopLine	cterm=bold	ctermfg=8	ctermbg=-1
+highlight TopLineSel	cterm=bold	ctermfg=green	ctermbg=-1
+
+highlight Win		cterm=none	ctermfg=188	ctermbg=-1
+highlight Directory	cterm=none	ctermfg=4	ctermbg=-1
+highlight CurrLine	cterm=none	ctermfg=15	ctermbg=blue
+highlight OtherLine	cterm=none	ctermfg=247	ctermbg=-1
+highlight Selected	cterm=none	ctermfg=188	ctermbg=23
+
+highlight JobLine	cterm=bold	ctermfg=188	ctermbg=-1
+highlight StatusLine	cterm=none	ctermfg=188	ctermbg=-1
+highlight WildMenu	cterm=none	ctermfg=188	ctermbg=-1
+highlight CmdLine	cterm=none	ctermfg=188	ctermbg=-1
+highlight ErrorMsg	cterm=none	ctermfg=188	ctermbg=-1
+
+highlight Executable	cterm=none	ctermfg=188	ctermbg=-1
+highlight Link		cterm=none	ctermfg=188	ctermbg=-1
+highlight BrokenLink	cterm=none	ctermfg=188	ctermbg=-1
+highlight Device	cterm=none	ctermfg=188	ctermbg=-1
+highlight Fifo		cterm=none	ctermfg=188	ctermbg=-1
+highlight Socket	cterm=none	ctermfg=188	ctermbg=-1
+
+" archives
+highlight {*.7z,*.ace,*.arj,*.bz2,*.cpio,*.deb,*.dz,*.gz,*.jar,*.lzh,*.lzma,
+          \*.rar,*.rpm,*.rz,*.tar,*.taz,*.tb2,*.tbz,*.tbz2,*.tgz,*.tlz,*.trz,
+          \*.txz,*.tz,*.tz2,*.xz,*.z,*.zip,*.zoo}
+        \ cterm=none ctermfg=green ctermbg=default
+
+" code
+highlight {*.patch,*.tex,*.txt,*.diff,*.py,*.[ch]pp,*.mk,*.c,*.h,*.[ch]pp,*.cc,*.hs,*.php}
+        \ cterm=none ctermfg=green ctermbg=default
+
+" documents
+highlight {*.djvu,*.htm,*.html,*.shtml,*.css,*.markdown,*.md,*[^0-9].[1-9],
+          \*.mkd,*.org,*.pandoc,*.pdc,*.epub,*.fb2,*.xhtml,
+          \*.xml,*.pptx,*.ppt,*.doc,*.docx,*.xls,*.xls[mx],*.mobi}
+        \ cterm=none ctermfg=red ctermbg=default
+
+" junk
+highlight {*.aux,*.out,*.ldf,*.sty,*.bst,*.cls}
+        \ cterm=none ctermfg=cyan ctermbg=default
+
+" TABLINE
+highlight TabLineFill cterm=bold ctermfg=cyan ctermbg=none
+highlight TabLine cterm=bold ctermfg=cyan ctermbg=none 
+highlight TabLineSel cterm=bold ctermfg=green ctermbg=none

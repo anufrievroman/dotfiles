@@ -1,0 +1,710 @@
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+
+[colors]
+background = #1a1e2a
+background-alt = #444
+foreground = #ffffff
+foreground-alt = #555
+primary = #5eadfc 
+secondary = #00fbad
+alert = #fa5ead
+
+[bar/main]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 36
+;offset-x = 1%
+;offset-y = 1%
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 0
+border-bottom-size = 0
+border-color = #00000000
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+; Icons
+font-0 = NotoMono Nerd Font Mono:pixelsize=16;4
+; Percentages
+font-1 = NotoMono Nerd Font Mono:pixelsize=13;3
+; Logo
+font-2 = NotoMono Nerd Font Mono:pixelsize=24;4
+; Bluetooth icon
+font-3 = NotoMono Nerd Font Mono:pixelsize=12;3
+; Sound icon
+font-4 = NotoMono Nerd Font Mono:pixelsize=18;4
+; Workspaces
+font-5 = NotoMono Nerd Font Mono:pixelsize=18;4
+
+modules-left = start i3 polytiramisu
+modules-center = 
+modules-right = xkeyboard pulseaudio mic-volume cpu memory battery zoom telegram anydesk colorpicker gromit-mpx nextcloud pcloud veracrypt bluetooth wlan eth vpn opacityscroll weather arrow date
+
+; tray-position = right
+tray-padding = 0
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/traybar]
+monitor-strict = false
+width = 20%
+height = 32
+offset-x = 79.8% 
+offset-y = 41
+override-redirect = true
+fixed-center = true
+;background = ${colors.background}
+background = #1a1e2a
+;foreground = ${colors.foreground}
+radius = 3
+line-size = 0
+padding-left = 2
+padding-right = 1
+module-margin-left = 0
+module-margin-right = 0
+modules-left = logo
+tray-position = right
+tray-detached = false
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 1
+tray-maxsize = 20
+tray-scale = 1.0
+tray-background = #1a1e2a
+font-0 = NotoMono Nerd Font Mono:pixelsize=13;3
+
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/scripts/weather.sh
+tail = false
+interval = 960
+foreground = ${colors.secondary}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+; format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+label-layout-font = 2
+
+label-indicator-padding = 0
+label-indicator-margin = 0
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/mic-volume]
+type = custom/script
+interval = 1
+format = <label>
+exec = bash ~/.config/polybar/scripts/mic-volume.sh show-vol
+format-prefix = " " 
+format-prefix-foreground = ${colors.primary}
+format-prefix-font = 4
+format-underline = #4bffdc
+
+click-right = pavucontrol
+click-left = bash ~/.config/polybar/scripts/mic-volume.sh mute-vol
+scroll-up = bash ~/.config/polybar/scripts/mic-volume.sh inc-vol
+scroll-down = bash ~/.config/polybar/scripts/mic-volume.sh dec-vol
+format-foreground = ${colors.foreground}
+label-font = 2
+
+[module/memory-info]
+type = custom/script
+exec = ~/.config/polybar/scripts/memory.sh
+click-left = ~/.config/polybar/scripts/memory.sh --popup
+format-underline = ${colors.primary}
+
+[module/cpu-info]
+type = custom/script
+exec = ~/.config/polybar/scripts/cpu.sh
+click-left = ~/.config/polybar/scripts/cpu.sh --popup
+format-underline = ${colors.primary}
+
+[module/polytiramisu]
+type = custom/script
+# Path to where you put polytiramisu.sh:
+exec = ~/.config/polybar/scripts/polytiramisu.sh
+format = <label>
+label-padding = 1
+tail = true
+format-font = 4
+format-foreground = ${colors.primary}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = false
+wrapping-scroll = false
+format-font = 6
+
+ws-icon-0 = 1;
+; ws-icon-0 = 1;
+; ws-icon-1 = 2;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+; ws-icon-2 = 3;ﰤ
+ws-icon-3 = 4;
+; ws-icon-3 = 4;﯑
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+
+; ws-icon-0 = 1;α
+; ws-icon-1 = 2;β
+; ws-icon-2 = 3;γ
+; ws-icon-3 = 4;δ
+; ws-icon-4 = 5;ε
+; ws-icon-5 = 6;ζ
+; ws-icon-6 = 7;η
+; ws-icon-7 = 8;θ
+; ws-icon-8 = 9;ι
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.primary}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 1
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-ur1ent-background = ${colors.alert}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+; label-separator = |
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = BL
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 3
+; format-prefix = " "
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+format-underline = #f90000
+label = %percentage:1%%
+label-font = 2
+format-prefix-font = 4
+
+[module/memory]
+type = internal/memory
+interval = 3
+; format-prefix = " "
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+label = %percentage_used%%
+label-font = 2
+
+[module/wlan]
+; check it with "ip a"
+type = internal/network
+; interface = wlo1
+interface = wlp4s0
+; interface = wlp2s0
+; interface = wlp0s20f3
+interval = 3.0
+
+; format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal>
+label-connected = %essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = .
+ramp-signal-1 = .
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.primary}
+
+[module/eth]
+type = internal/network
+; interface = ${env:DEFAULT_NETWORK_INTERFACE:enp3s0}
+; interface = enp3s0
+interface = eno1
+interval = 5
+
+format-connected = <label-connected>
+format-connected-prefix = ""
+format-connected-prefix-foreground = ${colors.primary}
+; label-connected = %local_ip%
+label-connected = ""
+format-connected-foreground = ${colors.primary}
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = custom/script
+exec = echo $(date '+%h %d %H:%M')
+;click-left = /home/r/.config/rofi/scripts/calendar/naivecalendar.sh
+click-left = exec alacritty -e calcure --config=$HOME/.config/calcure/config_min.ini
+interval = 30
+
+[module/date_native]
+type = internal/date
+interval = 5
+
+date = "%h %d "
+date-alt = "%y %m %d"
+time = %H:%M
+time-alt = %H:%M
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; format-volume = <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-font = 2
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+; ramp-volume-2 = 
+ramp-volume-2 = 
+format-volume-foreground = ${colors.primary}
+format-volume-font = 5
+label-volume-foreground = ${root.foreground}
+
+lick-right = pavucontrol
+label-muted = "  ﱝ  " 
+label-muted-foreground = ${colors.primary}
+
+bar-volume-width = 8
+bar-volume-foreground-0 = #5294e2
+bar-volume-foreground-1 = #5294e2
+bar-volume-foreground-2 = #5294e2
+bar-volume-foreground-3 = #5294e2
+bar-volume-foreground-4 = #5294e2
+bar-volume-foreground-5 = #5294e2
+bar-volume-foreground-6 = #5294e2
+bar-volume-gradient = false
+bar-volume-indicator = 
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/bluetooth]
+type = custom/script
+exec = $HOME/.config/rofi/scripts/bluetooth.sh --status
+interval = 1
+click-left = $HOME/.config/rofi/scripts/bluetooth.sh &
+click-right = blueberry &
+format-font = 4
+format-foreground = ${colors.primary}
+
+[module/vpn]
+type = custom/script
+exec = echo 
+exec-if = pgrep -x openvpn
+interval = 5
+format-foreground = ${colors.primary}
+
+[module/veracrypt]
+type = custom/script
+exec = echo 
+exec-if = pgrep -x veracrypt
+click-left = veracrypt
+interval = 12
+format-font = 4
+format-foreground = ${colors.primary}
+
+[module/opacityscroll]
+type = custom/script
+exec = echo 
+click-right = picom-trans -c 98
+click-left  = picom-trans -c 100
+interval = 25
+format-foreground = ${colors.primary}
+
+[module/pcloud]
+type = custom/script
+exec = echo 
+exec-if = pgrep -x pcloud
+click-left = pcloud
+interval = 10
+format-foreground = ${colors.primary}
+
+[module/nextcloud]
+type = custom/script
+exec = echo 
+exec-if = pgrep -x nextcloud
+click-left = nextcloud
+interval = 10
+format-foreground = ${colors.primary}
+
+[module/colorpicker]
+type = custom/text
+content = 
+click-left = colorgrab
+content-foreground = ${colors.primary}
+
+[module/telegram]
+type = custom/script
+exec = echo 
+exec-if = pgrep -x -f telegram-desktop
+click-left = telegram-desktop
+interval = 20
+format-foreground = ${colors.primary}
+
+[module/anydesk]
+type = custom/script
+exec = echo 
+exec-if = pgrep -x anydesk
+click-left = anydesk
+interval = 30
+format-foreground = ${colors.primary}
+
+[module/zoom]
+type = custom/script
+exec = echo 
+exec-if = pgrep -x zoom
+interval = 10
+format-foreground = ${colors.primary}
+
+[module/gromit-mpx]
+type = custom/script
+exec = echo 
+exec-if = pgrep -x gromit-mpx
+click-left = gromit-mpx --visibility
+click-right = gromit-mpx --clear
+scroll-down = gromit-mpx --toggle
+interval = 10
+format-foreground = ${colors.primary}
+
+[module/sleep]
+type = custom/text
+content = 
+click-left = systemctl suspend
+content-foreground = ${colors.primary}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 97
+poll-interval = 15
+
+format-charging = <animation-charging> <label-charging>
+label-charging-font = 2
+
+; format-discharging = <animation-discharging> <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging-font = 2
+
+label-full = %percentage%%
+format-full = 
+; format-full-prefix = " "
+format-full-foreground = ${colors.primary}
+format-full-font = 2
+label-full-font = 2
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.primary}
+ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-font = 4
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.secondary}
+animation-charging-framerate = 2050
+animation-charging-font = 4
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.primary}
+animation-discharging-framerate = 2050
+animation-discharging-font = 4
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 2
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.primary}
+
+[module/start]
+type = custom/menu
+
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-open-font = 3
+label-close = 
+label-close-foreground = ${colors.primary}
+label-close-font = 3
+label-separator = " "
+label-separator-foreground = ${colors.foreground-alt}
+label-foreground = ${colors.primary}
+
+menu-0-0 =  Power
+menu-0-0-exec = #start.open.1
+menu-0-0-font = 2
+menu-0-1 =  Programs
+menu-0-1-exec = #start.open.2
+menu-0-1-font = 2
+menu-0-2 =  Graphics
+menu-0-2-exec = #start.open.3
+menu-0-2-font = 2
+menu-0-3 =  Network
+menu-0-3-exec = #start.open.4
+menu-0-3-font = 2
+menu-0-4 = 漣 System
+menu-0-4-exec = #start.open.5
+menu-0-4-font = 2
+
+menu-1-0 =  Sleep
+menu-1-0-exec = i3lock -d -e -c 000000 -i ~/Pictures/lock.png && systemctl suspend
+menu-1-0-font = 2
+menu-1-1 =  Lock
+menu-1-1-exec = i3lock -d -e -c 000000 -i ~/Pictures/lock.png
+menu-1-1-font = 2
+menu-1-2 =  Logout
+menu-1-2-exec = loginctl terminate-user r
+menu-1-2-font = 2
+menu-1-3 =  Restart
+menu-1-3-exec = systemctl reboot
+menu-1-3-font = 2
+menu-1-4 =  Shutdown
+menu-1-4-exec = systemctl poweroff
+menu-1-4-font = 2
+
+menu-2-0 =  LibreOffice
+menu-2-0-exec = libreoffice &
+menu-2-0-font = 2
+menu-2-1 =  Files
+menu-2-1-exec = pcmanfm &
+menu-2-1-font = 2
+menu-2-2 =  Brave
+menu-2-2-exec = brave &
+menu-2-2-font = 2
+menu-2-3 =  Firefox
+menu-2-3-exec = firefox &
+menu-2-3-font = 2
+menu-2-4 =  Alacritty
+menu-2-4-exec = alacritty &
+menu-2-4-font = 2
+menu-2-5 =  Zoom
+menu-2-5-exec = zoom &
+menu-2-5-font = 2
+menu-2-6 =  Telegram
+menu-2-6-exec = telegram-desktop &
+menu-2-6-font = 2
+menu-2-7 =  Reaper
+menu-2-7-exec = wine ~/.wine/drive_c/Program\ Files/REAPER\ \(x64\)/reaper.exe
+menu-2-7-font = 2
+
+menu-3-0 =  Gimp
+menu-3-0-exec = gimp &
+menu-3-0-font = 2
+menu-3-1 =  Inkscape
+menu-3-1-exec = inkscape &
+menu-3-1-font = 2
+menu-3-2 =  Blender
+menu-3-2-exec = blender &
+menu-3-2-font = 2
+menu-3-3 =  Kdenlive
+menu-3-3-exec = kdenlive &
+menu-3-3-font = 2
+menu-3-4 =  Gromit
+menu-3-4-exec = gromit-mpx &
+menu-3-4-font = 2
+
+menu-4-0 =  Remmina 
+menu-4-0-exec = remmina &
+menu-4-0-font = 2
+menu-4-1 =  Anydesk
+menu-4-1-exec = anydesk &
+menu-4-1-font = 2
+menu-4-2 =  Bluetooth
+menu-4-2-exec = blueberry &
+menu-4-2-font = 2
+
+menu-5-0 =  SwapClean
+menu-5-0-exec = rm -r $HOME/.local/share/nvim/swap
+menu-5-0-font = 2
+menu-5-1 =  GTK
+menu-5-1-exec = lxappearance &
+menu-5-1-font = 2
+menu-5-2 =  QT
+menu-5-2-exec = qt5ct &
+menu-5-2-font = 2
+
+[module/kde-virtual-desktops]
+type = custom/script
+interval = 0.5
+exec = ~/.config/polybar/scripts/kde-virtual-desktops
+tail = false
+label = "%output%"
+label-font = 2
+
+[module/logo]
+type = custom/text
+; content = 
+content = 
+content-font = 3
+
+[module/sound]
+type = custom/text
+content = 
+click-left = pavucontrol
+content-foreground = ${colors.primary}
+
+[module/arrow]
+type = custom/script
+exec = echo ""
+click-left = ~/.config/polybar/scripts/showtray.sh
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 4
+margin-bottom = 2
+
+; vim:ft=dosini
+
