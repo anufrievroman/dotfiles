@@ -2,7 +2,7 @@
 
 A collection of dotfile to produce the setup in the screenshot below:
 
-![screenshot](https://github.com/anufrievroman/dotfiles/blob/main/screenshot.jpg)
+![screenshot](https://github.com/anufrievroman/dotfiles/blob/main/screen.jpg)
 
 ## Setup in the screenshot
 
