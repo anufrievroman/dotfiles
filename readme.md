@@ -1,6 +1,8 @@
-# Dotfile
+# Whale setup dot files
 
-A collection of dotfile to produce the setup in the screenshot below:
+![#1a1e2a](https://placehold.co/15x15/1a1e2a/1a1e2a.png) ![#5eadfc](https://placehold.co/15x15/5eadfc/5eadfc.png) ![#6a6f87](https://placehold.co/15x15/ffffff/ffffff.png) ![#fa5ead](https://placehold.co/15x15/fa5ead/fa5ead.png) ![#00fbad](https://placehold.co/15x15/00fbad/00fbad.png)
+
+A collection of dotfiles to produce the setup in the screenshots below:
 
 ![screenshot](https://github.com/anufrievroman/dotfiles/blob/main/screen.jpg)
 
@@ -15,6 +17,7 @@ A collection of dotfile to produce the setup in the screenshot below:
 - Vifm as TUI file manager
 - PCManFM as GUI file manager
 - Zathura as PDF viewer
+- Rofi as the launcher
 
 ## Colors
 
