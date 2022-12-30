@@ -1,0 +1,53 @@
+# GENERAL SETTINGS
+font.family          : Arial
+axes.titlesize       : 12
+axes.labelsize       : 12
+lines.linewidth      : 1.0
+lines.linestyle      : - 
+lines.markersize     : 5
+legend.frameon       : False
+
+# COLORS
+axes.prop_cycle:    cycler('color', ['1c68ff','000000','03D83F','D80382','A30AB7'])
+
+# TICKS 
+xtick.labelsize      : 9
+ytick.labelsize      : 9
+xtick.major.size     : 5    ## major tick size in points
+xtick.minor.size     : 3      ## minor tick size in points
+xtick.major.width    : 0.8    ## major tick width in points
+xtick.minor.width    : 0.6    ## minor tick width in points
+xtick.major.pad      : 5    ## distance to major tick label in points
+xtick.minor.pad      : 5    ## distance to the minor tick label in points
+xtick.color          : black  ## color of the tick labels
+xtick.direction      : in    ## direction: in, out, or inout
+xtick.minor.visible  : True  ## visibility of minor ticks on x-axis
+xtick.major.top      : False   ## draw x axis top major ticks
+xtick.major.bottom   : True   ## draw x axis bottom major ticks
+xtick.minor.top      : False   ## draw x axis top minor ticks
+xtick.minor.bottom   : True   ## draw x axis bottom minor ticks
+xtick.alignment      : center ## alignment of xticks
+
+ytick.major.size     : 5    ## major tick size in points
+ytick.minor.size     : 3      ## minor tick size in points
+ytick.major.width    : 0.8    ## major tick width in points
+ytick.minor.width    : 0.6    ## minor tick width in points
+ytick.major.pad      : 5    ## distance to major tick label in points
+ytick.minor.pad      : 5    ## distance to the minor tick label in points
+ytick.color          : black  ## color of the tick labels
+ytick.direction      : in    ## direction: in, out, or inout
+ytick.minor.visible  : True  ## visibility of minor ticks on x-axis
+
+
+# ERRORBAR PLOTS
+errorbar.capsize     : 0 
+
+# FIGURE SAVE
+figure.autolayout    : True
+figure.figsize       : 5, 3.5
+figure.dpi           : 200
+savefig.dpi          : 300
+
+# LEGEND
+legend.fontsize      : 8
+legend.handlelength  : 2

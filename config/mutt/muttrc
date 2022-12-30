@@ -1,0 +1,136 @@
+# vi ~/.muttrc
+# About Me
+set from = "**"
+set realname = "User"
+#set sidebar_visible
+#set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+#set mail_check_stats
+
+# My credentials
+set smtp_url  = "***"
+set smtp_pass = "******"
+set imap_user = "***"
+set imap_pass = "******"
+
+# My mailboxes
+set folder    = "***"
+set spoolfile = "+INBOX"
+set record    = "+Sent"
+set trash     = "+Trash"
+set postponed = "+Drafts"
+
+mailboxes =INBOX =Sent =Trash =Drafts =Archive
+
+# Where to put the stuff
+set header_cache = "~/.config/mutt/cache/headers"
+set certificate_file = "~/.config/mutt/certificates" 
+
+# Etc
+set mail_check = 30
+set move = no
+set imap_keepalive = 200
+set sort = date-received
+set editor = "nvim +Goyo"
+set rfc2047_parameters = yes
+
+# Other settings
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set attribution = "On %d, %n wrote:"
+unset help                           # No help bar at the top of index
+# unset confirmappend      # don't ask, just do!
+unset mark_old           # read/new is good enough for me
+
+# Time format (Here I display year and date separetely)
+# set date_format = "%d.%m.%Y %H:%M"
+# set index_format = "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+set date_format = "%Y "
+set index_format = " %zs %d%{%b %d} %-21.21L %?l?%5l&%5c? %zt %s"
+set to_chars =  " •·LR"
+set flag_chars = "⚑✘on- "
+set status_format = " %f • %l • %m messages%?n? • %n new ?%?d? • %d to delete ?%?t?"
+set folder_format =  "%t %i"
+
+
+# use very high $read_inc to speed up reading hcache'd maildirs
+folder-hook . 'set read_inc=1000'
+# use lower value for reading slower remote IMAP folders
+# folder-hook ^imap 'set read_inc=100'
+# use even lower value for reading even slower remote POP folders
+# folder-hook ^pop 'set read_inc=1'
+set header_cache_compress_method = "lz4"
+set header_cache_compress_level = 12
+
+# Colors
+source color.muttrc
+
+# Navigation
+bind generic                     z         noop
+bind index,pager,attach          g         noop
+bind index,pager                 s         noop
+bind index,pager                 c         noop
+bind generic,attach              l         noop
+bind generic,index,pager,attach  h         noop
+
+bind generic,index               l         display-message 
+bind attach                      l         view-attach
+bind generic,index               R         sync-mailbox 
+bind generic,index               <tab>     sync-mailbox 
+bind index                       ZQ        exit
+bind pager,index,generic,attach  h         exit
+bind generic,index,pager         \Cf       next-page
+bind generic,index,pager         \Cb       previous-page
+bind generic                     gg        first-entry
+bind generic,index               G         last-entry
+bind pager                       gg        top
+bind pager                       G         bottom
+bind generic,pager               \Cy       previous-line
+bind generic,index,pager         \Ce       next-line
+bind generic,index,pager         \Cd       half-down
+bind generic,index,pager         \Cu       half-up
+bind generic                     zt        current-top
+bind generic                     zz        current-middle
+bind generic                     zb        current-bottom
+bind index                       za        collapse-thread
+bind index                       zA        collapse-all
+bind index,pager                 N         search-opposite
+bind index                       <Backtab> previous-new-then-unread
+
+# Go to folder...
+macro index,pager gi "<change-folder>=INBOX<enter>"       "open inbox"
+macro index,pager gd "<change-folder>=Drafts<enter>"      "open drafts"
+macro index,pager gs "<change-folder>=Sent<enter>"        "open sent"
+macro index,pager gt "<change-folder>$trash<enter>"       "open trash"
+macro index,pager gf "<change-folder>?"                   "open mailbox..."
+
+# Actions
+bind  index,pager    a   group-reply
+source aliases
+
+
+# File picking
+macro compose A "<shell-escape>$HOME/.config/mutt/filepick<enter><enter-command>source $HOME/.config/mutt/tmpfile<enter><shell-escape>bash $HOME/.config/mutt/filepick clean<enter>" "Attach with Vifm"
+
+
+auto_view text/html
+
+# urlview bits
+macro index gb | urlview\n
+macro pager gb | urlview\n
+
+# Check for attachments
+set abort_noattach = ask-yes
+set abort_noattach_regex = "\\<attach(|ed|ments?)\\>"
+
+# Display header
+ignore *
+unignore from date subject to cc
+unignore organization organisation x-mailing-list:
+unignore posted-to:
+
+# Abook
+# When looking for contacts, use this command
+set query_command= "abook --mutt-query '%s'"
+# Add current sender to address book
+macro index,pager  A "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+# Auto-complete email addresses by pushing tab
+bind editor <Tab> complete-query

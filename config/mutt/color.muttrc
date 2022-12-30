@@ -1,0 +1,81 @@
+# vim: filetype=neomuttrc
+#
+# Default index colors:
+color index white default '.*'
+color index_author blue default '.*'
+color index_number cyan default
+color index_subject white default '.*'
+color index_flags cyan default '.*'
+color index_flags blue default '~F'
+color progress white blue
+
+# New mails:
+color index_flags green default '~N'
+color index green default "~N"
+color index_author green default "~N"
+color index_subject green default "~N"
+
+# Deleted mails:
+color index_flags cyan default '~D'
+color index_author cyan default '~D'
+color index_subject cyan default '~D'
+color index cyan default '~D'
+
+# Header colors:
+color header green default ".*"
+color header magenta default "^(from)"
+color header blue default "^(to)"
+color header blue default "^(cc)"
+color header cyan default "^(date)"
+color header green default "^(subject)"
+color header white default "^(CC|BCC)"
+
+mono bold bold
+mono underline underline
+mono indicator reverse
+mono error bold
+color normal default default
+color indicator white blue
+color sidebar_highlight red default
+color sidebar_divider brightblack black
+color sidebar_flagged red black
+color sidebar_new green black
+color normal cyan default
+color error red default
+color tilde black default
+color message cyan default
+color markers black default
+color attachment brightcyan default
+color search brightmagenta default
+color status cyan default
+color hdrdefault brightgreen default
+color quoted cyan default
+color quoted1 cyan default
+color quoted2 brightblack default
+color quoted3 yellow default
+color quoted4 red default
+color quoted5 brightred default
+color signature brightgreen default
+color bold black default
+color underline black default
+color normal default default
+
+#color body brightred default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
+color body brightmagenta default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
+#color body green default "\`[^\`]*\`" # Green text between ` and `
+#color body brightblue default "^# \.*" # Headings as bold blue
+#color body brightcyan default "^## \.*" # Subheadings as bold cyan
+#color body brightgreen default "^### \.*" # Subsubheadings as bold green
+#color body yellow default "^(\t| )*(-|\\*) \.*" # List items as yellow
+#color body brightcyan default "[;:][-o][)/(|]" # emoticons
+#color body brightcyan default "[;:][)(|]" # emoticons
+#color body brightcyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
+#color body brightcyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
+#color body red default "(BAD signature)"
+#color body cyan default "(Good signature)"
+#color body brightblack default "^gpg: Good signature .*"
+#color body cyan default "^gpg: "
+#color body cyan red "^gpg: BAD signature from.*"
+#mono body bold "^gpg: Good signature"
+#mono body bold "^gpg: BAD signature from.*"
+
