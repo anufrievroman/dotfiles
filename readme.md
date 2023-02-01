@@ -9,7 +9,7 @@ A collection of dotfiles to produce the setup in the screenshots below:
 ## Setup in the screenshot
 
 - [Whale theme](https://github.com/anufrievroman/whale)
-- i3 window manager with picom as compositor
+- i3 window manager with picom as compositor ([this fork](https://github.com/pijulius/picom))
 - Polybar as top bar
 - neovim with [VimTexKawaii](https://github.com/anufrievroman/vim-tex-kawaii)
 - Alacritty as terminal
@@ -18,6 +18,19 @@ A collection of dotfiles to produce the setup in the screenshots below:
 - PCManFM as GUI file manager
 - Zathura as PDF viewer
 - Rofi as the launcher
+- neomutt as email client
+
+## What rofi scripts do
+
+- Search my library of articles at ~\Library
+- Launch websites from bookmarks into web browser
+- Select special sybols, greek letters, etc
+- Manage virtual machines
+- Select wifi network
+- Translate selected text
+- Power management
+- ...and other things, take a look at the rofi scripts folder
+
 
 ## Colors
 

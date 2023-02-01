@@ -53,7 +53,7 @@ bindsym $mod+ctrl+i layout tabbed
 bindsym $mod+ctrl+a floating toggle; resize set 1285 960; move position 40px 80px
 
 # Terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+ctrl+Return exec alacritty
 
 # Browser
 bindsym $mod+b exec brave; workspace number 2
@@ -127,6 +127,9 @@ bindsym $mod+ctrl+p exec rofi -show power-menu -modi power-menu:"~/.config/rofi/
 # Library search
 bindsym $mod+ctrl+space exec "$HOME/.config/rofi/scripts/books-search.sh"
 
+# Bookmark manager
+bindsym $mod+Return exec "/home/r/.config/rofi/scripts/bookmarks/bookmarks.sh"
+
 # Scholar search
 bindsym $mod+ctrl+s exec "$HOME/.config/rofi/scripts/scholar-search.sh"
 
@@ -178,7 +181,7 @@ mode "Resize" {
         bindsym Down resize grow height 5 px or 5 ppt
         bindsym Up resize shrink height 5 px or 5 ppt
         bindsym Right resize grow width 5 px or 5 ppt
- 
+
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -253,7 +256,7 @@ bindsym $mod+ctrl+6 move container to workspace number 6
 bindsym $mod+ctrl+7 move container to workspace number 7
 bindsym $mod+ctrl+8 move container to workspace number 8
 bindsym $mod+ctrl+9 move container to workspace number 9
- 
+
 
 # Gap size increase/decrease bind mode
 set $mode_gaps Gaps
@@ -293,7 +296,7 @@ bindsym $mod+ctrl+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Move certain apps to specific workspaces
-for_window [class = "Brave"] move window to workspace number 2 
+# for_window [class = "Brave"] move window to workspace number 2 
 for_window [class = "Pcmanfm"] move window to workspace number 3
 for_window [class = "Telegram"] move window to workspace number 4
 for_window [class = "libreoffice"] move window to workspace number 5
