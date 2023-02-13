@@ -1,0 +1,182 @@
+{
+    "height": 30, // Waybar height (to be removed for auto height)
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-bottom": 0,
+    "margin-right": 0,
+    "spacing": 5, // Gaps between modules (4px)
+    "modules-left": ["custom/launcher", "wlr/workspaces"],
+    "modules-center": ["custom/spotify"],
+    "modules-right": ["backlight", "pulseaudio","cpu", "memory",  "network", "custom/bluetooth", "custom/nextcloud", "custom/pcloud", "custom/telegram", "custom/anydesk", "custom/zoom", "custom/vpn", "custom/veracrypt", "battery", "clock"],
+
+    "wlr/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "urgent": "",
+        "default": ""
+      }
+    },
+
+    "hyprland/window": {
+        "format": "{}"
+    },
+
+    "tray": {
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "{:%b %d %H:%M}",
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+
+    "cpu": {
+      "interval": 10,
+      "format": "<span color='#5294e2'></span> {}%",
+      "max-length": 10,
+      "on-click": "",
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "<span color='#5294e2'></span> {}%",
+        "format-alt":"<span color='#5294e2'></span> {used:0.1f}G",
+        "max-length": 10,
+    },
+
+    "backlight": {
+        "device": "DP-0",
+        "format": "<span color='#5294e2'>{icon}</span> {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": "",
+    },
+
+    "network": {
+        "format-wifi": "<span color='#5294e2'><span> {signalStrength}%",
+        "format-ethernet": "<span color='#5294e2'></span>",
+        "format-disconnected": "<span color='#5294e2'>睊</span>",
+        "on-click": "bash ~/.config/waybar/scripts/rofi-wifi-menu.sh",
+        "format-disconnected": "Disconnected  ",
+    },
+
+    "pulseaudio": {
+        "format": "<span color='#5294e2'>{icon}</span> {volume}%",
+        "format-bluetooth": "  {volume}%",
+        "format-bluetooth-muted": " ",
+        "format-muted": "婢",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "battery": {
+      "bat": "BAT0",
+      "adapter": "ADP0",
+      "interval": 60,
+      "states": {
+          "warning": 30,
+          "critical": 15
+      },
+      "max-length": 20,
+      "format": "{icon} {capacity}%",
+      "format-warning": "{icon} {capacity}%",
+      "format-critical": "{icon} {capacity}%",
+      "format-charging": "<span font-size='13px'></span> {capacity}%",
+      "format-plugged": "  {capacity}%",
+      "format-alt": "{icon} {time}",
+      "format-full": "  {capacity}%",
+      "format-icons": [" ", " ", " ", " ", " "],
+    },
+
+    "custom/weather": {
+      "exec": "python3 ~/.config/waybar/scripts/weather.py",
+      "restart-interval": 300,
+      "return-type": "json",
+      "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/4e73be5bb1986d9da1aea69b87c0c9992ad65aecd6fa642d1307f8c488fb6803"
+    },   
+
+    "custom/nextcloud": {
+      "format": "<span color='#5294e2'>{}</span>",
+      "exec": "echo ",
+      "exec-if": "pgrep -x nextcloud",
+      "interval": 10, 
+      "on-click": "nextcloud"
+    },   
+
+    "custom/pcloud": {
+      "format": "<span color='#5294e2'>{}</span>",
+      "exec": "echo ",
+      "exec-if": "pgrep -x pcloud",
+      "interval": 10, 
+      "on-click": "pcloud"
+    },   
+
+    "custom/telegram": {
+      "format": "<span color='#5294e2'>{}</span>",
+      "interval": 10, 
+      "exec": "echo ",
+      "exec-if": "pgrep -x -f telegram-desktop",
+      "on-click": "telegram-desktop"
+    },   
+
+    "custom/zoom": {
+      "format": "<span color='#5294e2'>{}</span>",
+      "interval": 10, 
+      "exec": "echo ",
+      "exec-if": "pgrep -x zoom",
+      "on-click": "zoom"
+    },   
+
+    "custom/anydesk": {
+      "format": "<span color='#5294e2'>{}</span>",
+      "interval": 10, 
+      "exec": "echo ",
+      "exec-if": "pgrep -x anydesk",
+      "on-click": "anydesk"
+    },   
+
+    "custom/vpn": {
+      "format": "<span color='#5294e2'>{}</span>",
+      "interval": 10, 
+      "exec": "echo ",
+      "exec-if": "pgrep -x openvpn",
+    },   
+
+    "custom/veracrypt": {
+      "format": "<span color='#5294e2'>{}</span>",
+      "interval": 10, 
+      "exec": "echo ",
+      "exec-if": "pgrep -x veracrypt",
+    },   
+
+    "custom/bluetooth": {
+      "format": "<span color='#5294e2'>{}</span>",
+      "interval": 5, 
+      "exec": "~/.config/rofi/scripts/bluetooth.sh --status",
+      "on-click": "blueberry &"
+    },   
+
+    "custom/launcher": {
+        "format": "",
+        "on-click": "rofi -show run",
+    },
+
+}
+

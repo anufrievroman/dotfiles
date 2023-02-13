@@ -53,7 +53,7 @@ bindsym $mod+ctrl+i layout tabbed
 bindsym $mod+ctrl+a floating toggle; resize set 1285 960; move position 40px 80px
 
 # Terminal
-bindsym $mod+ctrl+Return exec alacritty
+bindsym $mod+Return exec alacritty
 
 # Browser
 bindsym $mod+b exec brave; workspace number 2
@@ -128,7 +128,7 @@ bindsym $mod+ctrl+p exec rofi -show power-menu -modi power-menu:"~/.config/rofi/
 bindsym $mod+ctrl+space exec "$HOME/.config/rofi/scripts/books-search.sh"
 
 # Bookmark manager
-bindsym $mod+Return exec "/home/r/.config/rofi/scripts/bookmarks/bookmarks.sh"
+bindsym $mod+l exec "/home/r/.config/rofi/scripts/bookmarks/bookmarks.sh"
 
 # Scholar search
 bindsym $mod+ctrl+s exec "$HOME/.config/rofi/scripts/scholar-search.sh"
